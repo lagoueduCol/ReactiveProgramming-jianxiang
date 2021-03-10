@@ -1,0 +1,7 @@
+
+spring:
+   r2dbc:
+     url: r2dbcs:mysql://119.3.52.175:3306/r2dbcs_account
+     username: root
+     password: 1qazxsw2#edc
+   

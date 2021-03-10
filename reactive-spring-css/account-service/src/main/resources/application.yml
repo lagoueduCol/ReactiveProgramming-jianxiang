@@ -1,0 +1,43 @@
+server:
+  port: 8082
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  
+  endpoint:
+    health:
+      show-details: always
+
+spring:
+  cloud:
+    stream:
+      bindings:
+        default:
+          content-type: application/json
+          binder: rabbitmq
+        output:
+          destination: account-destination
+          group: customerGroup
+#          producer:
+#            partitionKeyExpression: payload.accountMessage.isEndWithDigit()
+#            partitionCount: 2
+      binders:
+        rabbitmq:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: 127.0.0.1
+                port: 5672
+                username: guest
+                password: guest
+            virtual-host: / 
+
+logging:
+    level:
+      com.netflix: WARN
+      org.springframework.web: WARN
+      com.springcss: INFO
+    

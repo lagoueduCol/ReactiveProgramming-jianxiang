@@ -1,0 +1,35 @@
+server:
+   port: 8083
+
+
+spring:
+  cloud:
+    stream:
+      bindings:
+        default:
+          content-type: application/json
+          binder: rabbitmq
+        accountChangedChannel:
+          destination: account-destination
+          group: customerGroup
+#          consumer:
+#            partitioned: true
+#            instanceIndex: 1
+#            instanceCount: 2
+      binders:
+        rabbitmq:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: 127.0.0.1
+                port: 5672
+                username: guest
+                password: guest
+                virtual-host: /
+
+logging:
+    level:
+      com.netflix: WARN
+      org.springframework.web: WARN
+      com.springcss: INFO
